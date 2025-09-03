@@ -1,0 +1,73 @@
+@mixin btn-theme($back: black, $fore: white) {
+  $timing: .5s;
+
+  background: $back;
+  border-color: $fore;
+  color: $fore;
+  transition: background $timing, border-color $timing, color $timing;
+}
+
+@mixin btn-theme-gradient($back, $border) {
+  $timing: .5s;
+
+  background: $back;
+  border-color: $border;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  transition: background $timing, border-color $timing;
+}
+
+@mixin icon($size: 4rem) {
+  @extend %flex-center;
+  height: $size;
+  width: $size;
+}
+
+@mixin link($color: $navy70) {
+  $gap: 0.2rem;
+  $timing: 0.1s;
+  $underline-height: .1rem;
+
+  color: $color;
+  display: inline-block;
+  font-weight: bold;
+  padding-bottom: $gap;
+  margin-top: $gap;
+  position: relative;
+  width: fit-content;
+
+  &::before {
+    content: "";
+    position: absolute;
+    background-color: $color;
+    bottom: 0;
+    height: $underline-height;
+    left: 0;
+    transition: width 0s;
+    width: 0;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    background-color: $color;
+    bottom: 0;
+    height: $underline-height;
+    right: 0;
+    transition: width $timing;
+    width: 0;
+  }
+
+  &:hover {
+    &::before {
+      width: 100%;
+      transition: width $timing;
+    }
+
+    &::after {
+      width: 100%;
+      transition-delay: $timing;
+    }
+  }
+}

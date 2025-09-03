@@ -1,7 +1,103 @@
-// sass src/scss/styles.scss src/css/styles.css
+@use "sass:color";
+@use "sass:map";
+@use "sass:math";
+
+@use 'keyframes' as *;
+@use 'mixins' as *;
+@use 'variables' as *;
+@use 'typography' as *;
 
 .main__container {
-  background: #ffd5ff;
-  width: 100vw;
+  background: $gradient-primary;
   height: 100vh;
+  width: 100vw;
+}
+
+.header {
+  &__container {
+    align-items: center;
+    display: flex;
+    height: 15vh;
+    justify-content: space-around;
+    width: 100%;
+
+    .logo__container {
+      align-items: center;
+      display: flex;
+
+      .logo {
+        $size: 3vw;
+
+        $size: 3vw;
+        height: $size;
+        width: $size;
+      }
+
+      .title {
+        font-size: 2vw;
+      }
+    }
+
+    .auth__container {
+      $radius: 1rem;
+
+      align-items: center;
+      background: $gradient-primary;
+      background-blend-mode: luminosity;
+      border: 1.25px solid $border-secondary-200;
+      border-radius: 3.5rem;
+      box-shadow: 0 0 0 1.5px $border-primary-100;
+      column-gap: .75rem;
+      display: flex;
+      padding: .5rem .55rem;
+
+      button {
+        box-shadow: 1px 1px 3px .25px lightgray;
+      }
+
+      .btn--primary {
+        border-bottom-left-radius: $radius;
+        border-top-left-radius: $radius;
+      }
+      .btn--secondary {
+        border-bottom-right-radius: $radius;
+        border-top-right-radius: $radius;
+      }
+    }
+  }
+}
+
+.btn {
+  align-items: center;
+  border-radius: 3rem;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 1.7rem;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+
+  &--primary {
+    background: $gradient-btn-primary;
+    background-size: 125%;
+    border: 2px solid $border-primary;
+    color: $white;
+    transition: background-position 0.1s ease;
+
+    &:hover {
+      background-position: right bottom;
+    }
+  }
+  &--secondary {
+    $time: 0.5s;
+
+    background: $color-secondary;
+    border: 2px solid $border-secondary-100;
+    color: $black;
+    transition: color $time ease, text-shadow $time ease;
+
+    &:hover {
+      color: $color-primary;
+      text-shadow: 0 0 20px $purple30;
+    }
+  }
 }
